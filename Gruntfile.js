@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   var semver = require('semver');
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    CHROMIUM_SRC: 'C:\\_workspace\\work\\chromium.r197479\\home\\src_tarball\\tarball\\chromium\\src\\',
+    CHROMIUM_SRC: process.env.CHROMIUM_SRC || 'C:\\_workspace\\work\\chromium.r197479\\home\\src_tarball\\tarball\\chromium\\src\\',
     clean: ['dist'],
     telemetry_files: {
       options: {
