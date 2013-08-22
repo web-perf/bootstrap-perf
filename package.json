@@ -1,0 +1,24 @@
+{
+  "name": "bootstrap-perf",
+  "version": "0.0.0",
+  "description": "Performance analysis of Twitter Bootstrap over the versions",
+  "main": "grunt",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bootstrap",
+    "performance",
+    "telemetry"
+  ],
+  "author": "Parashuram <code@r.nparashuram.com>",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "semver": "~2.1.0",
+    "jade": "~0.34.1",
+    "grunt-contrib-copy": "~0.4.1"
+  }
+}
