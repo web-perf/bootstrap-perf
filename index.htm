@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Bootstrap - Performance analysis</title>
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="http://getbootstrap.com/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet"/>
+</head>
+<body>
+	<!-- Wrap all page content here -->
+	<div id="wrap">
+		<!-- Fixed navbar -->
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Bootstrap::Performance</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="#">Home</a>
+						</li>
+						<li>
+							<a href="http://axemclion.iriscouch.com/_utils/document.html?bootstrap-perf/" target="_blank">Raw Data</a>
+						</li>
+						<li>
+							<a href="http://nparashuram.com"  target="_blank">About</a>
+						</li>
+						<li>
+							<a href="http://nparashuram.com/contact.html"  target="_blank">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Begin page content -->
+		<div class="container">
+			<div class="page-header">
+				<h1>Bootstrap Performance using telemetry</h1>
+			</div>
+			<p class="lead">
+				Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within
+			</p>
+			<p>
+				<form class="form-inline" role="form">
+					<div class="form-group">
+						<select class="form-control" id = "component">
+							<option>alert</option>
+							<option>badges</option>
+							<option>base-css</option>
+							<option>breadcrumbs</option>
+							<option>button-all</option>
+							<option>button-basic</option>
+							<option>button-groups</option>
+							<option>dropdowns</option>
+							<option>forms</option>
+							<option>images</option>
+							<option>listgroup</option>
+							<option>media</option>
+							<option>nav</option>
+							<option>navbar</option>
+							<option>pagination</option>
+							<option>progress</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for = "metric">Metric</label>
+						<select class="form-control" id = "metric">
+							<option>dom_content_loaded_time (seconds)</option>
+							<option>first_paint (ms)</option>
+							<option>load_time (seconds</option>
+							<option>mean_frame_time (ms)</option>
+						</select>
+					</div>
+				</form>
+
+			</p>
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="container">
+			<p class="text-muted credit">
+				An experiment inspired by <a href = "http://topcoat.io" target = "_blank">Topcoat.io</a>. To see how to run these tests, check out the <a href = "https://github.com/axemclion/bootstrap-perf" target = "_blank"> repository on github</a>.
+			</p>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="http://download.pouchdb.com/pouchdb-nightly.js"></script>
+	<script type="text/javascript"></script>
+</body>
+</html>
