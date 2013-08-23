@@ -20,5 +20,9 @@
     "semver": "~2.1.0",
     "jade": "~0.34.1",
     "grunt-contrib-copy": "~0.4.1"
+  },
+  "dependencies": {
+    "csv": "~0.3.6",
+    "nano": "~4.1.1"
   }
 }
