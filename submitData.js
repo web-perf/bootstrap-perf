@@ -28,6 +28,7 @@ require('csv')().from.path(process.argv[2], {
 		var parts = row.url.trim().split(/\//);
 		row.component = parts[1].split(/.html/)[0];
 		row.version = parts[0].substring(1);
+		row.set = require('node-uuid').v1();
 		return row;
 	}
 })
