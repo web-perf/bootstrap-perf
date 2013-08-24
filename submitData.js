@@ -2,7 +2,7 @@ if (process.argv.length !== 3) {
 	console.log('Usage: %s %s', process.argv[1], process.argv[2]);
 	return;
 }
-
+var setId = require('node-uuid').v1();
 require('csv')().from.path(process.argv[2], {
 	columns: true
 }).to.array(function(data, count) {
@@ -28,7 +28,7 @@ require('csv')().from.path(process.argv[2], {
 		var parts = row.url.trim().split(/\//);
 		row.component = parts[1].split(/.html/)[0];
 		row.version = parts[0].substring(1);
-		row.set = require('node-uuid').v1();
+		row.set = setId
 		return row;
 	}
 })
