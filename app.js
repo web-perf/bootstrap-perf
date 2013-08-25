@@ -18,6 +18,8 @@ $(document).ready(function() {
 		getStats(component, metric).then(function(res) {
 			$('#chartDiv').empty();
 			drawGraph([res]);
+		}, function(err) {
+			showModal('Error', 'Could not load results from remote server : ' + err.statusText);
 		});
 
 	});
@@ -33,30 +35,7 @@ $(document).ready(function() {
 					return [obj.key[2], obj.value.sum / obj.value.count];
 				});
 				dfd.resolve(result);
-			});
-		});
-	}
-
-
-	var component = {
-		name: $('#component').val(),
-		data: {}
-	};
-
-	function getData() {
-		return $.Deferred(function(dfd) {
-			var selectedComponent = $('#component').val()
-			if (component.name !== selectedComponent || _.isEmpty(component.data)) {
-				$.getJSON(server + 'bootstrap-perf/_design/data/_view/component?key=%22' + selectedComponent + '%22').then(function(data) {
-					component = {
-						name: selectedComponent,
-						data: data.rows
-					}
-					dfd.resolve(component.data);
-				}, dfd.reject);
-			} else {
-				dfd.resolve(component.data);
-			}
+			}, dfd.reject);
 		});
 	}
 
@@ -178,6 +157,8 @@ $(document).ready(function() {
 							contentType: 'application/json',
 						}).then(function(data) {
 							showModal('Upload Successful', 'Uploaded <strong>' + data.length + '</strong> records to the server at <br/>' + server + 'bootstrap-perf/_utils/database.html?bootstrap-perf');
+						}, function(err) {
+							showModal('Error', 'Could not upload data. Server says : ' + err.statusText);
 						});
 					}
 				} catch (e) {
