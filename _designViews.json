@@ -1,6 +1,5 @@
 {
    "_id": "_design/data",
-   "_rev": "9-45b847166ba2c3a56372ddee0e838628",
    "language": "javascript",
    "views": {
        "stats": {

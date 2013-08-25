@@ -64,12 +64,32 @@
 		<div class = "container head-container">
 			<div class="page-header">
 				<h1>Bootstrap Performance using telemetry</h1>
+				<div class = "clearfix">
+					<span id = "databaseName" class = "hide">
+						Database located at
+						<a href = "" class = "database" target = "_blank">...</a>
+						(
+						<a href = "#" id = "changeServerLink" title = "If the server is taking too long to load, try a different mirror server to fetch the data">change</a>
+						)
+					</span>
+					<span id = "changeDatabaseName">
+						<form class = "form-inline" role = "form">
+							Database located at
+							<div class = "form-group">
+								<select class = "form-control" id = "changeDBDropdown">
+									<option selected>http://axemclion.iriscouch.com:5984/</option>
+									<option>http://localhost:5984/</option>
+									<option>http://nodejitsudb1731388161.iriscouch.com:6984/</option>
+								</select>
+							</div>
+						</form>
+					</span>
+				</div>
 			</div>
 		</div>
 		<div class="container results">
-			<p class="lead">
-				Results fetched from
-				<a href = "" class = "database" target = "_blank">...</a>
+			<p class = "lead">
+				View metrics for each component over various versions of the Bootstrap framework.
 			</p>
 			<p>
 				<form class="form-inline" role="form">
@@ -114,9 +134,8 @@
 			</p>
 		</div>
 		<div class = "container upload hide">
-			<p class="lead">
-				Results will be saved to
-				<a href = "" class = "database" target = "_blank">...</a>
+			<p class = "lead">
+				After generating the HTML files and running telemetry, upload the files to the server. The more data points, the more statistically significant the graph.
 			</p>
 			<div class = "row">
 				<div id="drop_zone" class = "text-center jumbotron">Drop files here</div>

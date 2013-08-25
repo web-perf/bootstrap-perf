@@ -1,8 +1,18 @@
 $(document).ready(function() {
-	//var server = 'http://axemclion.iriscouch.com:5984';
-	var server = 'http://localhost:5984/';
+	var server = null;
 
 	$('.database').attr('href', server + '/bootstrap-perf/_utils/database.html?bootstrap-perf').html(server);
+
+	$('#changeDBDropdown').on('change', function() {
+		server = $(this).val();
+		$('#databaseName, #changeDatabaseName').toggleClass('hide');
+		$('.database').html(server);
+	}).trigger('change');
+
+	$('#changeServerLink').on('click', function() {
+		$('#databaseName, #changeDatabaseName').toggleClass('hide');
+	});
+
 
 	$('#results_link, #upload_link').on('click', function(e) {
 		$('.results, .upload').toggleClass('hide');
@@ -112,6 +122,12 @@ $(document).ready(function() {
 
 
 	$('#uploadButton').click(function() {
+		if (files === null || files.length === 0) {
+			showModal('Cannot Upload', 'Select at least 1 file to upload');
+			return;
+		}
+
+		$(this).attr('disabled', true).html("Uploading ... ");
 		var result = [],
 			fileCount = 0;
 
@@ -156,12 +172,18 @@ $(document).ready(function() {
 							method: 'POST',
 							contentType: 'application/json',
 						}).then(function(data) {
+							$('#uploadButton').attr('disabled', false).html("Upload Files");
+							$('#list').empty();
 							showModal('Upload Successful', 'Uploaded <strong>' + data.length + '</strong> records to the server at <br/>' + server + 'bootstrap-perf/_utils/database.html?bootstrap-perf');
 						}, function(err) {
+							$('#list').empty();
+							$('#uploadButton').attr('disabled', false).html("Upload Files");
 							showModal('Error', 'Could not upload data. Server says : ' + err.statusText);
 						});
 					}
 				} catch (e) {
+					$('#uploadButton').attr('disabled', false).html("Upload Files");
+					$('#list').empty();
 					showModal('Error Parsing Files', 'Could not parse <strong>' + f.name + '</strong><br/> Caused error <code>' + e.message + '</code>');
 				}
 			}
