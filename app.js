@@ -1,18 +1,33 @@
 $(document).ready(function() {
+	//var server = 'http://axemclion.iriscouch.com:5984';
+	var server = 'http://localhost:5984/bootstrap-perf/';
+
 	$('#component, #metric').on('change', function() {
 		$('#chartDiv').html('<center>Loading</center>');
+		var component = $('#component').val();
 		var metric = $('#metric').val();
-		getData().then(function(data) {
+		getStats(component, metric).then(function(res) {
 			$('#chartDiv').empty();
-			var plot = _.sortBy(_.map(data, function(o, index, obj) {
-				return [index, parseFloat(o.value[metric])];
-			}), function(obj) {
-				return obj[0];
-			});
-			drawGraph([plot]);
+			drawGraph(res);
 		});
+
 	});
 
+
+	function getStats(component, metric) {
+		return $.Deferred(function(dfd) {
+			$.getJSON(server + '_design/data/_view/stats', {
+				startkey: JSON.stringify([component, metric]),
+				endkey: JSON.stringify([component, metric, {}]),
+				group: true
+			}).then(function(data) {
+				var result = _.map(data.rows, function(obj, index) {
+					return [obj.key[2], obj.value.sum / obj.value.count];
+				});
+				dfd.resolve(result);
+			});
+		});
+	}
 
 
 	var component = {
@@ -24,7 +39,7 @@ $(document).ready(function() {
 		return $.Deferred(function(dfd) {
 			var selectedComponent = $('#component').val()
 			if (component.name !== selectedComponent || _.isEmpty(component.data)) {
-				$.getJSON('http://axemclion.iriscouch.com/bootstrap-perf/_design/data/_view/component?key=%22' + selectedComponent + '%22').then(function(data) {
+				$.getJSON(server + 'bootstrap-perf/_design/data/_view/component?key=%22' + selectedComponent + '%22').then(function(data) {
 					component = {
 						name: selectedComponent,
 						data: data.rows
@@ -38,7 +53,8 @@ $(document).ready(function() {
 	}
 
 	function drawGraph(data) {
-		$.jqplot("chartDiv", data, {
+		console.log(data);
+		$.jqplot("chartDiv", [data], {
 			// Turns on animatino for all series in this plot.
 			animate: true,
 			// Will animate plot on calls to plot1.replot({resetAxes:true})
@@ -49,7 +65,7 @@ $(document).ready(function() {
 			},
 			seriesDefaults: {
 				rendererOptions: {
-					smooth: false
+					smooth: true
 				},
 				lineWidth: 1,
 				markerOptions: {
@@ -60,22 +76,26 @@ $(document).ready(function() {
 			axes: {
 				// These options will set up the x axis like a category axis.
 				xaxis: {
-					label: "Versions",
-					tickInterval: 1,
-					drawMajorGridlines: true,
-					drawMinorGridlines: false,
-					drawMajorTickMarks: false,
-					rendererOptions: {
-						tickInset: 1,
-						minorTicks: 1
-					}
+					renderer: $.jqplot.CategoryAxisRenderer,
+					label: 'Versions',
+					labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+					tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+					tickOptions: {
+						angle: -90,
+						mark: 'outside',
+						showMark: true,
+						showGridline: true,
+						markSize: 4,
+						show: true,
+						showLabel: true,
+					},
+					showTicks: true, // wether or not to show the tick labels,
+					showTickMarks: true,
 				},
 				yaxis: {
-					tickOptions: {
-						formatString: "$%'d"
-					},
+					tickOptions: {},
 					rendererOptions: {
-						forceTickAt0: true
+						forceTickAt0: false
 					}
 				}
 			},
