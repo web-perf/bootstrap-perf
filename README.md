@@ -14,6 +14,10 @@ To run telemetry against this repository,
 $> python run_multipage_benchmarks --browser=system smoothness_benchmark page_sets\bootstrap-perf.json -o results.csv
 ```
 6. The command above will open each HTML file, scroll through the pages and return results. 
+7. The results are saved in CSV format. Upload them using http://nparashuram.com/bootstrap-perf (upload link at the top)
+
+## More Info
+* [Blog post](http://blog.nparashuram.com/2013/08/bootstrap-evolution-over-two-years.html) talking about how the system works
 
 ## Details
 
