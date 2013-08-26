@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$('#changeDBDropdown').on('change', function() {
 		server = $(this).val();
 		$('#databaseName, #changeDatabaseName').toggleClass('hide');
-		$('.database').attr('href', server + '_utils/database.html?bootstrap-perf').html(server);
+		$('.database').attr('href', server + '/_utils/database.html?bootstrap-perf').html(server);
 	}).trigger('change');
 
 	$('#changeServerLink').on('click', function() {
