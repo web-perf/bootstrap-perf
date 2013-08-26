@@ -1,12 +1,10 @@
 $(document).ready(function() {
 	var server = null;
 
-	$('.database').attr('href', server + '/bootstrap-perf/_utils/database.html?bootstrap-perf').html(server);
-
 	$('#changeDBDropdown').on('change', function() {
 		server = $(this).val();
 		$('#databaseName, #changeDatabaseName').toggleClass('hide');
-		$('.database').html(server);
+		$('.database').attr('href', server + '_utils/database.html?bootstrap-perf').html(server);
 	}).trigger('change');
 
 	$('#changeServerLink').on('click', function() {
@@ -15,9 +13,10 @@ $(document).ready(function() {
 
 
 	$('#results_link, #upload_link').on('click', function(e) {
-		$('.results, .upload').toggleClass('hide');
-		$('#results_link, #upload_link').removeClass('active');
-		$(this).addClass('active');
+		if (!$(this).hasClass('active')) {
+			$('.results, .upload').toggleClass('hide');
+			$('#results_link, #upload_link').toggleClass('active');
+		}
 		return false;
 	});
 
