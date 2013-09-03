@@ -26,7 +26,7 @@ $(document).ready(function() {
 		var metric = $('#metric').val();
 		getStats(component, metric).then(function(res) {
 			$('#chartDiv').empty();
-			drawGraph([res]);
+			drawGraph([res], metric.match(/\([\S]*\)/g));
 		}, function(err) {
 			showModal('Error', 'Could not load results from remote server : ' + err.statusText);
 		});
@@ -48,7 +48,7 @@ $(document).ready(function() {
 		});
 	}
 
-	function drawGraph(data) {
+	function drawGraph(data, yaxisLabel) {
 		$.jqplot("chartDiv", data, {
 			// Turns on animatino for all series in this plot.
 			animate: true,
@@ -91,7 +91,10 @@ $(document).ready(function() {
 					tickOptions: {},
 					rendererOptions: {
 						forceTickAt0: false
-					}
+					},
+					label: yaxisLabel || '',
+					labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+					tickRenderer: $.jqplot.CanvasAxisTickRenderer
 				}
 			},
 			highlighter: {
