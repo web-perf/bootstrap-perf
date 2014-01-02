@@ -21,6 +21,7 @@
     "jade": "~0.34.1",
     "grunt-contrib-watch": "~0.5.3",
     "load-grunt-tasks": "~0.2.1",
-    "perfjankie": "~0.0.x"
+    "perfjankie": "~0.0.x",
+    "lodash": "~2.4.1"
   }
 }

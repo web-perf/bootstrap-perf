@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
-  var semver = require('semver');
+  var semver = require('semver'),
+    _ = require('lodash');
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: ['dist'],
@@ -60,9 +61,9 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
   var task = grunt.config.data.run_perf_tests,
     path = require('path');
-  grunt.util._.each(grunt.file.expand({
+  _.each(_.shuffle(grunt.file.expand({
     filter: 'isFile'
-  }, './dist/**/*.html'), function(file) {
+  }, './dist/**/*.html')), function(file) {
     file = path.relative('./dist', file);
     var version = path.dirname(file),
       component = path.basename(file);
