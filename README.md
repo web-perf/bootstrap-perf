@@ -5,22 +5,17 @@ This repository is for analyzing the performance of various versions of the [boo
 ## Running the code
 To run telemetry against this repository, 
 
-1. [Download](http://chromium-browser-source.commondatastorage.googleapis.com/chromium_tarball.html) the source of [Chromium](http://www.chromium.org/developers/how-tos/get-the-code) and extract it to a location. 
-2. Set the environment variable `CHROMIUM_SRC` to the location where you extracted. The path usually ends with src/ and looks something like `/chromium.r197479/home/src_tarball/tarball/chromium/src/`
-3. Run `npm install` to install dev dependencies
-4. Run `grunt`. This command created HTML files for each version of bootstrap, for each component specified. These HTML files are copied to `CHROMIUM_SRC\tools\perf\page_sets\bootstrap*`
-5. Navigate to `CHROMIUM_SRC\tools\perf` and run 
-```
-$> python run_multipage_benchmarks --browser=system smoothness_benchmark page_sets\bootstrap-perf.json -o results.csv
-```
-6. The command above will open each HTML file, scroll through the pages and return results. 
-7. The results are saved in CSV format. Upload them using http://nparashuram.com/bootstrap-perf (upload link at the top)
+1. Install all NPM dependencies
+2. [Download]() and run selenium with drivers for Chrome or any other browsers. 
+3. Run `grunt --verbose`
+4. The grunt file will automatically connect to the selenium server and run the tests
+5. The results will be available as a couch app at the URL specified in the grunt file. 
 
 ## More Info
 * [Blog post](http://blog.nparashuram.com/2013/08/bootstrap-evolution-over-two-years.html) talking about how the system works
 
 ## Details
 
-This repository has almost all versions of bootstrap. It creates HTML pages and uses the `smoothness_benchmark` to see how each version performs, for every comopnent. 
+This repository has almost all versions of bootstrap. It creates HTML pages and uses the `smoothness_benchmark` to see how each version performs, for every component. 
 
 _ Inspired by the awesome perf done in the [Topcoat.io](https://github.com/topcoat/topcoat/tree/master/dev/test/perf/telemetry) repository. Trying to do the same thing for bootstrap _

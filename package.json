@@ -14,16 +14,13 @@
   "author": "Parashuram <code@r.nparashuram.com>",
   "license": "BSD",
   "devDependencies": {
-    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-connect": "~0.6.0",
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "semver": "~2.1.0",
     "jade": "~0.34.1",
-    "grunt-contrib-copy": "~0.4.1"
-  },
-  "dependencies": {
-    "csv": "~0.3.6",
-    "nano": "~4.1.1",
-    "node-uuid": "~1.4.1"
+    "grunt-contrib-watch": "~0.5.3",
+    "load-grunt-tasks": "~0.2.1",
+    "perfjankie": "~0.0.x"
   }
 }

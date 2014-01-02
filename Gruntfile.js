@@ -2,9 +2,23 @@ module.exports = function(grunt) {
   var semver = require('semver');
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    CHROMIUM_SRC: process.env.CHROMIUM_SRC || 'C:\\_workspace\\work\\chromium.r197479\\home\\src_tarball\\tarball\\chromium\\src\\',
     clean: ['dist'],
-    telemetry_files: {
+    connect: {
+      all: {
+        options: {
+          hostname: '*',
+          port: 9000,
+          base: ['./lib', './dist']
+        }
+      }
+    },
+    watch: {
+      all: {
+        files: [],
+        tasks: []
+      }
+    },
+    generate_files: {
       options: {
         versions: grunt.file.expand({
           filter: 'isDirectory',
@@ -16,46 +30,55 @@ module.exports = function(grunt) {
         tmpl: 'main.jade'
       }
     },
-    copy: {
-      page_sets: {
-        files: [{
-          expand: true,
-          cwd: 'dist',
-          src: ['**'],
-          dest: '<%= CHROMIUM_SRC %>/tools/perf/page_sets'
-        }]
-      },
-      lib: {
-        files: [{
-          expand: true,
-          cwd: 'lib',
-          src: ['**'],
-          dest: '<%= CHROMIUM_SRC %>/tools/perf/page_sets/bootstrap'
-        }]
+
+    run_perf_tests: {
+      options: {
+        couch: {
+          server: 'https://axemclion.cloudant.com/',
+          database: 'bootstrap-performance',
+          updateSite: false
+        },
+        selenium: {
+          hostname: "localhost",
+          port: 4444
+        },
+        browser: ['chrome', 'firefox'],
+        suite: "Bootstrap :: Rendering performance on the browser",
+        log: {
+          'fatal': grunt.fail.fatal.bind(grunt.fail),
+          'error': grunt.fail.warn.bind(grunt.fail),
+          'warn': grunt.log.error.bind(grunt.log),
+          'info': grunt.log.ok.bind(grunt.log),
+          'debug': grunt.verbose.writeln.bind(grunt.verbose),
+          'trace': grunt.log.debug.bind(grunt.log)
+        }
       }
     }
   });
 
-
   // Loading dependencies
-  for (var key in grunt.file.readJSON('package.json').devDependencies) {
-    if (key !== 'grunt' && key.indexOf('grunt') === 0) {
-      grunt.loadNpmTasks(key);
+  require('load-grunt-tasks')(grunt);
+  var task = grunt.config.data.run_perf_tests,
+    path = require('path');
+  grunt.util._.each(grunt.file.expand({
+    filter: 'isFile'
+  }, './dist/**/*.html'), function(file) {
+    file = path.relative('./dist', file);
+    var version = path.dirname(file),
+      component = path.basename(file);
+    task[version + '_' + component] = {
+      options: {
+        url: 'http://localhost:9000/' + version + '/' + component,
+        name: component.replace(/.html/, ''),
+        run: version
+      }
     }
-  }
+  });
 
-  grunt.registerTask('telemetry_files', 'Generate HTML files for telemetry', function() {
+  grunt.registerTask('generate_files', 'Generate HTML files for telemetry', function() {
     var opts = this.options(),
       jade = require('jade'),
-      tmpl = jade.compile(grunt.file.read(opts.tmpl)),
-      telemetryEntry_blank = {
-        url: 'file:///bootstrap/blank.html',
-        smoothness: {
-          action: 'scroll'
-        }
-      },
-      pageSets = [telemetryEntry_blank],
-      pageSet_component = [telemetryEntry_blank];
+      tmpl = jade.compile(grunt.file.read(opts.tmpl));
 
     for (var j = 0; j < opts.components.length; j++) {
       var componentHTML = grunt.file.read(opts.components[j]),
@@ -66,28 +89,18 @@ module.exports = function(grunt) {
           cssFile, javascript = null;
 
         if (semver.satisfies(v, '1.0.0 - 1.2.0')) {
-          cssFile = 'bootstrap-' + v + '.css';
+          cssFile = '/v' + v + '/bootstrap-' + v + '.css';
         } else if (semver.satisfies(v, '1.3.0 - 1.4.0')) {
-          cssFile = 'bootstrap.css';
+          cssFile = '/v' + v + '/bootstrap.css';
         } else if (semver.satisfies(v, '2.0.0 - 2.3.2')) {
-          cssFile = 'css/bootstrap.css';
-          javascript = 'js/bootstrap.js';
+          cssFile = '/v' + v + '/css/bootstrap.css';
+          javascript = '/v' + v + '/js/bootstrap.js';
         } else if (semver.gte(v, '3.0.0')) {
-          cssFile = 'css/bootstrap.css';
-          javascript = 'js/bootstrap.js';
+          cssFile = '/v' + v + '/css/bootstrap.css';
+          javascript = '/v' + v + '/js/bootstrap.js';
         }
 
-
-        var telemetryEntry = {
-          url: 'file:///bootstrap/v' + v + '/' + componentName + '.html',
-          smoothness: {
-            action: 'scroll'
-          }
-        };
-
-        pageSets.push(telemetryEntry);
-        pageSet_component.push(telemetryEntry)
-        grunt.file.write('dist/bootstrap/v' + v + '/' + componentName + '.html', tmpl({
+        grunt.file.write('dist/v' + v + '/' + componentName + '.html', tmpl({
           css: cssFile,
           javascript: javascript,
           version: opts.versions[i],
@@ -95,19 +108,19 @@ module.exports = function(grunt) {
           componentHTML: componentHTML
         }));
       }
-      grunt.file.write('dist/bootstrap-perf-' + componentName + '.json', JSON.stringify({
-        description: 'Twitter Bootstrap performace tests over versions for ' + componentName,
-        pages: pageSet_component
-      }));
-      pageSet_component = [telemetryEntry_blank];
     }
-
-    grunt.file.write('dist/bootstrap-perf.json', JSON.stringify({
-      description: 'Twitter Bootstrap performace tests over versions',
-      pages: pageSets
-    }));
-
   });
 
-  grunt.registerTask('default', ['clean', 'telemetry_files', 'copy']);
+  var perfJankie = require('perfJankie');
+  grunt.registerMultiTask('run_perf_tests', 'Runs Performance tests', function() {
+    var done = this.async();
+    var options = this.options();
+    options.callback = function(err, res) {
+      grunt.log.writeln('Completed testing for ', options.name, options.run)
+      done(!err);
+    }
+    perfJankie(options);
+  });
+
+  grunt.registerTask('default', ['clean', 'connect', 'generate_files', 'run_perf_tests']);
 };
