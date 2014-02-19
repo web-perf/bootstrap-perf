@@ -12,7 +12,7 @@
     "telemetry"
   ],
   "author": "Parashuram <code@r.nparashuram.com>",
-  "license": "BSD",
+  "license": "MIT",
   "devDependencies": {
     "grunt-contrib-connect": "~0.6.0",
     "grunt": "~0.4.1",
