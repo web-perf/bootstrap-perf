@@ -1,0 +1,78 @@
+{
+	"3.3.2": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
+	},
+	"3.3.1": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
+	},
+	"3.3.0": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"
+	},
+	"3.2.0": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+	},
+	"3.1.1": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
+	},
+	"3.1.0": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"
+	},
+	"3.0.3": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"
+	},
+	"3.0.2": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"
+	},
+	"3.0.1": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"
+	},
+	"3.0.0": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"
+	},
+	"2.3.2": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"
+	},
+	"2.3.1": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"
+	},
+	"2.3.0": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"
+	},
+	"2.2.2": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"
+	},
+	"2.2.1": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"
+	},
+	"2.2.0": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.2.0/js/bootstrap.min.js"
+	},
+	"2.1.1": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"
+	},
+	"2.1.0": {
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.1.0/css/bootstrap-combined.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.1.0/js/bootstrap.min.js"
+	},
+	"2.0.4": {
+		"js": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap.min.js",
+		"css": "http://maxcdn.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css"
+	}
+}
