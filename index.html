@@ -1,14 +1,68 @@
 <!doctype html>
 <html>
 <head>
-	<title>
-	</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-</head>
+	<title></title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"></head>
+	<style type="text/css" media="screen">
+		.container{
+			max-width: 680px;
+		}	
+
+	</style>
+	<base target="_blank">
+
 <body>
-	<h1><A href = "oldsite">Redirecting</A></h1>
-	<script>
-		window.location = 'oldsite/index.html';
-	</script>
+	<div class="container">
+		<div class="page-header">
+			<h1>Bootstrap Perf</h1>
+		</div>
+		<p class="lead">
+			An experiment to visualize how smooth and performant the
+			<a href = "http://getbootstrap.com">bootstrap framework</a>
+			is.
+		</p>
+		<p>
+			<a href = "oldsite/index.html" class="btn btn-success btn-lg">View Results &raquo;</a>
+		</p>
+		<p class="hide">
+			<a href="oldsite/index.html">View alternate results</a>
+			that were obtained when run using Chromium Telemetry
+		</p>
+		<h3>What is this project?</h3>
+		<p>
+			This project is a way to run tests to measure how well the bootstrap framework renders on a web browser. It runs the tests for from version 1.0 to the latest version, for each
+			<A href="http://getbootstrap.com/components/">component</A>
+			in the framework. Results are stored in a couchdb database and graphs are plotted from metrics like frame rates, time spent for style calculations, layouts, etc.
+		</p>
+		<h3>How are the tests run?</h3>
+		<p>
+			Each component for every version of the library is rendered on a webpage 200 times. This webpage is then scrolled vertically while we measure how smooth the scroll is.
+			<br/>
+			The tests are run using
+			<A href="http://github.com/axemclion/browser-perf">browser-perf</A>
+			, which is a port of the Chromium's performance test suite called telemetry.
+		</p>
+		<h3>Why were these tests run?</h3>
+		<p>
+			It is hard to improve something without measuring it. The metrics across different versions provide interesting insights into how the library has evolved, and how browsers have become better. Keeping an eye on the performance while developing the library can ensure that bootstrap stays smooth.
+		</p>
+		<h3>Links</h3>
+		<ul>
+			<li>
+				<A href="http://blog.nparashuram.com/2013/08/bootstrap-evolution-over-two-years.html">Blog post with more details</A>
+			</li>
+			<li>
+				<a href = "http://github.com/axemclion/bootstrap-perf">Github repo, with instructions on running the tests</a>
+			</li>
+			<li>
+				<a href = "http://github.com/axemclion/browser-perf">Tool used to run performance tests</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="container"></div>
+	<a href="https://github.com/axemclion/bootstrap-perf">
+		<img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"/>
+	</a>
 </body>
 </html>
