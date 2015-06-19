@@ -1,4 +1,12 @@
 {
+	"3.3.5": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+	},
+	"3.3.4": {
+		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css",
+		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"
+	},
 	"3.3.2": {
 		"css": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css",
 		"js": "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"

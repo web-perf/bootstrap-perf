@@ -14,13 +14,13 @@
   "author": "Parashuram <code@r.nparashuram.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.6.0",
-    "glob": "^4.4.1",
-    "lodash": "^3.3.1",
+    "commander": "^2.8.1",
+    "glob": "^5.0.10",
+    "lodash": "^3.9.3",
     "node-static": "^0.7.6",
-    "perfjankie": "^1.2.2",
-    "rimraf": "^2.2.8",
-    "semver": "^4.3.1"
+    "perfjankie": "^2.0.1",
+    "rimraf": "^2.4.0",
+    "semver": "^4.3.6"
   },
   "devDependencies": {},
   "repository": {
