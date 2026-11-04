@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^15.0.0",
-    "glob": "^13.0.6",
+    "glob": "^14.0.3",
     "lodash": "^4.18.1",
     "node-static": "^0.7.6",
     "perfjankie": "^2.0.1",
